@@ -9,6 +9,8 @@ from datetime import date, timedelta
 from quiz import models as QMODEL
 from student import models as SMODEL
 from quiz import forms as QFORM
+from quiz.forms import QuizForm
+
 
 
 
@@ -56,15 +58,16 @@ def teacher_exam_view(request):
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
 def teacher_add_exam_view(request):
-    quizForm=QFORM.quizForm()
-    if request.method=='POST':
-        quizForm=QFORM.quizForm(request.POST)
+    quizForm = QFORM.QuizForm()  # Use the correct form name here
+    if request.method == 'POST':
+        quizForm = QFORM.QuizForm(request.POST)
         if quizForm.is_valid():        
             quizForm.save()
         else:
             print("form is invalid")
         return HttpResponseRedirect('/teacher/teacher-view-exam')
-    return render(request,'teacher/teacher_add_exam.html',{'quizForm':quizForm})
+    return render(request, 'teacher/teacher_add_exam.html', {'quizForm': quizForm})
+
 
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
@@ -117,3 +120,9 @@ def remove_question_view(request,pk):
     question=QMODEL.Question.objects.get(id=pk)
     question.delete()
     return HttpResponseRedirect('/teacher/teacher-view-question')
+
+
+@login_required(login_url='teacherlogin')
+def teacher_view_student(request):
+    students= SMODEL.Student.objects.all()
+    return render(request,'teacher/teacher_view_student.html',{'students':students})
