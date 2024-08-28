@@ -88,6 +88,16 @@
         font-size: 1.5rem;
       }
     }
+
+    .hero .btn {
+      font-size: 1.25rem;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 30px;
+      background-image: linear-gradient(to right, #5b98f1, #64bcf1);
+      color: #ffffff;
+      border: none;
+    }
   </style>
 </head>
 
@@ -95,8 +105,16 @@
   {% include "quiz/navbar.html" %}
 
   <section id="section-hero" class="hero">
+
     <div class="hero-content">
       <h2>You have successfully logged out.</h2>
+
+      <div class="mb-4 signup-buttons">
+        <a href="/" class="btn btn-lg rounded-pill"><i class="fa fa-sign-out"
+            aria-hidden="true"></i>Return to main page</a>
+
+      </div>
+
     </div>
   </section>
 

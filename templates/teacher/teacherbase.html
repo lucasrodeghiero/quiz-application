@@ -15,42 +15,43 @@
       margin: 0;
       padding: 0;
       font-family: "Gill Sans", sans-serif;
-      ;
     }
 
     header {
       position: fixed;
-      background: #22242A;
-      padding: 20px;
+      background: linear-gradient(to bottom, #64bcf1, #5b98f1);
+      padding: 25px;
       width: 100%;
       z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left_area {
+      display: flex;
+      align-items: center;
     }
 
     .left_area h3 {
       color: #fff;
-      margin: 0px;
+      margin: 0 0 0 30px;
       text-transform: uppercase;
       font-size: 22px;
       font-weight: 900;
-    }
-
-    .left_area span {
-      color: #19B3D3;
+      font-family: 'Alexandria';
     }
 
     .logout_btn {
-      padding: 5px;
-      background: #19B3D3;
+      padding: 10px;
+      background: #4573b8;
       text-decoration: none;
-      float: right;
-      margin-top: -30px;
-      margin-right: 40px;
-      border-radius: 2px;
+      border-radius: 10px;
       font-size: 15px;
       font-weight: 600;
       color: #fff;
       transition: 0.5s;
-
+      font-family: 'Alexandria';
     }
 
     .logout_btn:hover {
@@ -58,7 +59,7 @@
     }
 
     .sidebar {
-      background: #2f323a;
+      background: linear-gradient(to left, #64bcf1, #5b98f1);
       margin-top: 70px;
       padding-top: 30px;
       position: fixed;
@@ -77,9 +78,9 @@
     }
 
     .sidebar h4 {
-      color: #ccc;
+      color: #ffffff;
       margin-top: 0;
-
+      margin-bottom: 20px;
     }
 
     .sidebar a {
@@ -91,7 +92,6 @@
       padding-left: 40px;
       box-sizing: border-box;
       transition: 0.5s;
-
     }
 
     .sidebar a:hover {
@@ -105,13 +105,13 @@
     label #sidebar_btn {
       z-index: 1;
       color: #fff;
-      position: fixed;
       cursor: pointer;
-      left: 300px;
       font-size: 20px;
-      margin: 5px 0;
       transition: 0.5s;
       transition-property: color;
+      display: flex;
+      align-items: center;
+      margin: 0 10px 0 0;
     }
 
     label #sidebar_btn:hover {
@@ -139,6 +139,7 @@
       background-size: cover;
       height: 100vh;
       transition: 0.5s;
+      font-family: 'Alexandria';
     }
 
     #check:checked~.content {
@@ -148,6 +149,7 @@
     #check {
       display: none;
     }
+
   </style>
 
 

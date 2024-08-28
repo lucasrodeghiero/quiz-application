@@ -1,10 +1,18 @@
 from django import forms
 from . import models
+from django import forms
+from .models import Quiz
+
 
 class QuizForm(forms.ModelForm):
     class Meta:
         model = models.Quiz
         fields = ['quiz_name', 'question_number', 'total_marks', 'is_visible']
+
+class QuizForm(forms.ModelForm):
+    class Meta:
+        model = Quiz
+        fields = ['quiz_name', 'question_number', 'total_marks']
 
 class QuestionForm(forms.ModelForm):
     # This will show a dropdown; __str__ method of quiz model is shown in HTML
