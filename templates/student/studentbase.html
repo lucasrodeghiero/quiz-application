@@ -4,8 +4,6 @@
 
 <head>
   <meta charset="utf-8">
-
-
   <style media="screen">
     a:link {
       text-decoration: none;
@@ -14,43 +12,44 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: "Gill Sans", sans-serif;
-      ;
+      font-family: 'Alexandria', "Gill Sans", sans-serif;
     }
 
     header {
       position: fixed;
-      background: #22242A;
-      padding: 20px;
+      background: linear-gradient(to bottom, #64bcf1, #5b98f1);
+      padding: 25px;
       width: 100%;
       z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left_area {
+      display: flex;
+      align-items: center;
     }
 
     .left_area h3 {
       color: #fff;
-      margin: 0px;
+      margin: 0 0 0 30px;
       text-transform: uppercase;
       font-size: 22px;
       font-weight: 900;
-    }
-
-    .left_area span {
-      color: #19B3D3;
+      font-family: 'Alexandria';
     }
 
     .logout_btn {
-      padding: 5px;
-      background: #19B3D3;
+      padding: 10px;
+      background: #4573b8;
       text-decoration: none;
-      float: right;
-      margin-top: -30px;
-      margin-right: 40px;
-      border-radius: 2px;
+      border-radius: 10px;
       font-size: 15px;
       font-weight: 600;
       color: #fff;
       transition: 0.5s;
-
+      font-family: 'Alexandria';
     }
 
     .logout_btn:hover {
@@ -58,7 +57,7 @@
     }
 
     .sidebar {
-      background: #2f323a;
+      background: linear-gradient(to left, #64bcf1, #5b98f1);
       margin-top: 70px;
       padding-top: 30px;
       position: fixed;
@@ -77,9 +76,9 @@
     }
 
     .sidebar h4 {
-      color: #ccc;
+      color: #ffffff;
       margin-top: 0;
-
+      margin-bottom: 20px;
     }
 
     .sidebar a {
@@ -91,7 +90,6 @@
       padding-left: 40px;
       box-sizing: border-box;
       transition: 0.5s;
-
     }
 
     .sidebar a:hover {
@@ -105,13 +103,13 @@
     label #sidebar_btn {
       z-index: 1;
       color: #fff;
-      position: fixed;
       cursor: pointer;
-      left: 300px;
       font-size: 20px;
-      margin: 5px 0;
       transition: 0.5s;
       transition-property: color;
+      display: flex;
+      align-items: center;
+      margin: 0 10px 0 0;
     }
 
     label #sidebar_btn:hover {
@@ -134,11 +132,12 @@
 
     .content {
       margin-left: 250px;
-      background: url(background.png) no-repeat;
+      background: url({% static 'background.png' %}) no-repeat;
       background-position: center;
       background-size: cover;
       height: 100vh;
       transition: 0.5s;
+      font-family: 'Alexandria';
     }
 
     #check:checked~.content {
@@ -150,10 +149,7 @@
     }
   </style>
 
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
-
 </head>
 
 <body>
@@ -161,10 +157,10 @@
   <input type="checkbox" id="check">
   <!--header area start-->
   <header>
-    <label for="check">
-      <i style="left: 200px;margin-top: 17px;" class="fas fa-bars" id="sidebar_btn"></i>
-    </label>
     <div class="left_area">
+      <label for="check" class="sidebar_btn">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
       <h3>Online Quiz</h3>
     </div>
     <div class="right_area">
@@ -175,11 +171,9 @@
   <!--sidebar start-->
   <div class="sidebar">
     <center>
-
-      <img src="{% static " Student/pyth.png" %}" class="profile_image" alt="">
+      <img src="{% static 'Student/pyth.png' %}" class="profile_image" alt="">
       <h4>{{request.user.first_name}}</h4>
-      <h6 style="color: rgb(255, 255, 255);">( Student )</h6>
-
+      <h6 style="color: #ffffff;">(Student)</h6>
     </center>
 
     <a href="/student/student-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
@@ -188,19 +182,16 @@
   </div>
   <!--sidebar end-->
 
-
   <!--content start-->
   <div class="content">
     <br><br><br><br><br>
     {% block content %}
-
     {% endblock content %}
-
-
     <br><br><br>
     {% include "quiz/footer.html" %}
   </div>
   <!--content end-->
+
 </body>
 
 </html>
