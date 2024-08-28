@@ -173,35 +173,35 @@
         {% csrf_token %}
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
-          {% render_field userForm.username|attr:'class:form-control' %}
+          {% render_field userForm.username|attr:"class:form-control" required="required" %}
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          {% render_field userForm.password|attr:'class:form-control' %}
+          {% render_field userForm.password|attr:"class:form-control" required="required" %}
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="first_name" class="form-label">First Name</label>
-            {% render_field userForm.first_name|attr:'class:form-control' %}
+            {% render_field userForm.first_name|attr:"class:form-control" required="required" %}
           </div>
           <div class="col-md-6 mb-3">
             <label for="last_name" class="form-label">Last Name</label>
-            {% render_field userForm.last_name|attr:'class:form-control' %}
+            {% render_field userForm.last_name|attr:"class:form-control" required="required" %}
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="mobile" class="form-label">Mobile</label>
-            {% render_field studentForm.mobile|attr:'class:form-control' %}
+            {% render_field studentForm.mobile|attr:"class:form-control" required="required" %}
           </div>
           <div class="col-md-6 mb-3">
             <label for="address" class="form-label">Address</label>
-            {% render_field studentForm.address|attr:'class:form-control' %}
+            {% render_field studentForm.address|attr:"class:form-control" required="required" %}
           </div>
         </div>
         <div class="mb-3">
           <label for="profile_pic" class="form-label">Profile Picture</label>
-          {% render_field studentForm.profile_pic|attr:'class:form-control' %}
+          {% render_field studentForm.profile_pic|attr:"class:form-control" required="required" %}
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Sign Up</button>
