@@ -26,3 +26,6 @@ class TeacherForm(forms.ModelForm):
         self.fields['profile_pic'].widget.clear_checkbox_label = None
         self.fields['profile_pic'].widget.initial_text = None
         self.fields['profile_pic'].widget.template_name = 'django/forms/widgets/input.html'
+
+
+  
