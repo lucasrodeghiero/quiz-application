@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+    <style>
+        /* body {
+            background-color: white;
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+            margin: 0;
+            min-height: 100vh;
+        } */
+
+        .login-hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.2rem 1rem;
+            /* Adjust padding as needed */
+            background-color: #f8f9fa;
+            min-height: 80vh;
+            box-sizing: border-box;
+            flex: 1;
+            color: white;
+        }
+
+        .login-hero-content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .login-hero h1 {
+            font-size: 2.5rem;
+            color: #5b9bf1;
+            /* Match signup page text color */
+            margin-bottom: 1rem;
+            font-family: 'Alexandria';
+        }
+
+        .login-hero p {
+            font-size: 1.5rem;
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            margin: 50px auto;
+            padding: 40px;
+            background: #191919;
+            color: white;
+            text-align: center;
+            box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
+        }
+
+        .card input[type="text"],
+        .card input[type="password"] {
+            border: 2px solid #3498db;
+            background: none;
+            color: black;
+            border-radius: 24px;
+            transition: 0.25s;
+            width: 100%;
+            margin: 20px 0;
+            padding: 10px;
+        }
+
+        .card input[type="text"]::placeholder,
+        .card input[type="password"]::placeholder {
+            color: #ccc;
+            opacity: 1;
+        }
+
+        .card input[type="text"]:focus,
+        .card input[type="password"]:focus {
+            border-color: #dfcaf3;
+            background: none;
+        }
+
+        .card input[type="submit"] {
+            border: 2px solid #5b9bf1;
+            background: #5b9cf1;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+            padding: 10px 60px;
+            margin-top: 20px;
+            font-family: 'Alexandria';
+        }
+
+        .card input[type="submit"]:hover {
+            background: #4b82ca;
+        }
+
+        .card h1 {
+            text-transform: uppercase;
+            font-weight: 500;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #5b9bf1;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+            font-family: 'Alexandria';
+        }
+
+        .signup-link {
+            margin-top: 35px;
+            color: #5b9bf1;
+            font-family: 'Alexandria';
+        }
+
+        .signup-link a {
+            color: #5b9bf1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 991px) {
+            .login-hero {
+                padding: 4rem 1rem;
+                /* Adjust padding as needed */
+            }
+
+            .login-hero h1 {
+                font-size: 3rem;
+            }
+
+            .login-hero p {
+                font-size: 1.25rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .login-hero {
+                padding: 3rem 1rem;
+                /* Adjust padding as needed */
+            }
+
+            .login-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .login-hero p {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card input[type="submit"] {
+                padding: 10px 30px;
+                /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include "quiz/navbar.html" %}
+
+    <section id="section-hero" class="login-hero">
+        <div class="card">
+            <h1>Student Login</h1>
+            <p class="text-muted">Please enter your login and password!</p>
+            <form method="post">
+                {% csrf_token %}
+                {% render_field form.username class="form-control" placeholder="Username" %}
+                {% render_field form.password class="form-control" placeholder="Password" %}
+                <input type="submit" value="Login">
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="{% url 'studentsignup' %}">Sign up here.</a>
+            </div>
+        </div>
+    </section>
+
+    {% include "quiz/footer.html" %}
+</body>
+
+</html>

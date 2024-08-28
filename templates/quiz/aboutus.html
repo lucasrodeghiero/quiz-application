@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+
+  <style>
+    :root {
+      --bs-body-bg: #f8f9fa !important;
+      /* Override Bootstrap's default background color */
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      text-align: left;
+    }
+
+    .about-section {
+      margin-top: 4.5rem;
+      background-color: #eceef1;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+    }
+
+    .about-section h1 {
+      font-family: 'Alexandria';
+      font-size: 2.5rem;
+      color: rgb(31, 48, 65);
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      color: #6c757d;
+    }
+
+    .card h5 {
+      font-size: 1.25rem;
+      color: rgb(31, 48, 65);
+      font-family: 'Alexandria';
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #6c757d;
+      align-items: center;
+      font-family: 'Alexandria';
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "quiz/navbar.html" %}
+
+  <div class="container mt-4">
+    <div class="about-section">
+      <h1 class="display-4">About Us</h1>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{% static 'image/dogpic.jpg' %}" class="card-img-top" alt="Team Member 1">
+            <div class="card-body">
+              <h5 class="card-title">Lucas Do Amaral Martins<br>—</h5>
+              <p class="card-text"><i class="fas fa-phone-alt icon">&nbsp;</i>+61 123456789<br><i class="fas fa-envelope icon"></i>&nbsp;<a href="mailto:lucas@gmail.com">lucas@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{% static 'image/dogpic.jpg' %}" class="card-img-top" alt="Team Member 2">
+            <div class="card-body">
+              <h5 class="card-title">Putu Ayu P. V. Sarjana<br>—</h5>
+              <p class="card-text"><i class="fas fa-phone-alt icon">&nbsp;</i>+61 123456789<br><i class="fas fa-envelope icon">&nbsp;</i><a href="mailto:vina@gmail.com">vina@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{% static 'image/dogpic.jpg' %}" class="card-img-top" alt="Team Member 3">
+            <div class="card-body">
+              <h5 class="card-title">Jose David Davila Pita<br>—</h5>
+              <p class="card-text"><i class="fas fa-phone-alt icon">&nbsp;</i>+61 123456789<br><i class="fas fa-envelope icon">&nbsp;</i><a href="mailto:david@gmail.com">david@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "quiz/footer.html" %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

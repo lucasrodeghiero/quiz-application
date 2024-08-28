@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCQuiz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      text-align: left;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure the page takes at least the height of the viewport */
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2rem 1rem 2rem 1rem;
+      background-color: #f8f9fa;
+      flex: 1; /* Allow the hero section to grow and push footer to bottom */
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      color: rgb(31, 48, 65);
+      margin-bottom: 1rem;
+      font-family: 'Alexandria';
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: #6c757d;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .btn {
+      font-size: 1.25rem;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 30px;
+      background-image: linear-gradient(to right, #5b98f1, #64bcf1);
+      color: #ffffff;
+      border: none;
+    }
+
+    .hero .btn:hover {
+      opacity: 0.8;
+    }
+
+    .signup-buttons {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero-img-container {
+      flex: 1;
+      max-width: 500px;
+      text-align: right;
+    }
+
+    .hero-img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 1308px) {
+      .hero {
+        padding: 5rem 1rem; /* Reduced top padding */
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+      }
+
+      .hero .btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+
+      .hero-img-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .hero-img {
+        max-width: 60%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 5rem 1rem; /* Reduced top padding */
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero .btn {
+        font-size: 0.875rem;
+        padding: 8px 16px;
+      }
+
+      .hero-img-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .hero-img {
+        max-width: 50%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 4rem 1rem; 
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 0.875rem;
+      }
+
+      .hero .btn {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+      }
+
+      .hero-img-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .hero-img {
+        max-width: 40%;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero {
+        padding: 3rem 1rem; /* Reduced top padding */
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 0.75rem;
+      }
+
+      .hero .btn {
+        font-size: 0.625rem;
+        padding: 4px 8px;
+      }
+
+      .hero-img-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .hero-img {
+        max-width: 30%;
+      }
+    }
+
+    footer {
+      width: 100%;
+      padding: 15px 0;
+      background: linear-gradient(to bottom, #64bcf1, #5b98f1); /* Gradient background */
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .about-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+
+    .about-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "quiz/navbar.html" %}
+
+  <section id="section-hero" class="hero">
+    <div class="hero-content">
+      <h1 class="display-1"><b>Welcome to MCQuiz</b></h1>
+      <p class="display-4">Create engaging quizzes effortlessly with MCQuiz!<br>Choose your quiz
+        topics, add your questions, and you're ready to go.<br>Sign up now to start using our incredible app, or log in
+        with<br>
+        your existing account and make the most out of your quizzes.</p>
+      <div class="mb-4 signup-buttons">
+        <a href="/student/studentsignup" class="btn btn-lg rounded-pill"><i class="fa fa-user-plus"
+            aria-hidden="true"></i> Student Sign Up</a>
+        <a href="/teacher/teachersignup" class="btn btn-lg rounded-pill"><i class="fa fa-user-plus"
+            aria-hidden="true"></i> Teacher Sign Up</a>
+      </div>
+    </div>
+    <div class="hero-img-container">
+      <img src="{% static 'image/home_logo.jpeg' %}" alt="Logo" class="hero-img">
+    </div>
+  </section>
+
+  {% include "quiz/footer.html" %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

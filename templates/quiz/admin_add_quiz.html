@@ -1,0 +1,47 @@
+{% extends 'quiz/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+  .btn-primary {
+    border: 2px solid #5b9bf1 !important;
+    background: #5b9cf1 !important;
+    color: white !important;
+    border-radius: 24px !important;
+    transition: 0.25s !important;
+    cursor: pointer !important;
+  }
+
+  .btn-primary:hover {
+        background: #4b82ca !important;
+    }
+</style>
+
+<h2 class="text-center text-dark">Add Quiz</h2>
+<form method="POST" autocomplete="off" style="margin: 100px auto; max-width: 600px; margin-top: 50px;">
+  {% csrf_token %}
+  <div class="form-group mb-4">
+    <label for="quiz_name">Quiz Name</label>
+    {% render_field quizForm.quiz_name class="form-control" placeholder="e.g. Science" %}
+  </div>
+
+  <div class="form-group mb-4">
+    <label for="question_number">Questions</label>
+    {% render_field quizForm.question_number class="form-control" placeholder="e.g. 10" %}
+  </div>
+
+  <div class="form-group mb-4">
+    <label for="total_marks">Total Marks</label>
+    {% render_field quizForm.total_marks class="form-control" placeholder="e.g. 100" %}
+  </div>
+
+  <div class="form-group mb-4">
+    <label for="is_visible">Visible to Students</label>
+    {% render_field quizForm.is_visible class="form-check-input" %}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Quiz</button>
+</form>
+<br><br><br>
+{% endblock %}
+

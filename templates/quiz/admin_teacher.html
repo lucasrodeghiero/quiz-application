@@ -1,0 +1,55 @@
+{% extends 'quiz/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+  <style>
+    .card.bg-primary {
+      background-color: rgb(231, 159, 129) !important; /* Custom primary color */
+    }
+
+    .card.bg-success {
+      background-color: rgb(125, 202, 197) !important; /* Custom primary color */
+    }
+
+    .card.bg-primary:hover {
+      background-color: rgb(194, 134, 109) !important; /* Custom hover color for primary */
+    }
+
+    .card.bg-success:hover {
+      background-color: rgb(107, 174, 169) !important; /* Custom hover color for success */
+    }
+  </style>
+</head>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <a href="admin-view-teacher" class="card bg-primary text-white text-decoration-none">
+        <div class="card-body">
+          <h5 class="card-title">Total Teachers</h5>
+          <h2 class="card-text text-right">
+            <i class="fas fa-chalkboard-teacher me-2"></i>{{ total_teacher }}
+          </h2>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 mb-4">
+      <a href="admin-view-pending-teacher" class="card bg-success text-white text-decoration-none">
+        <div class="card-body">
+          <h5 class="card-title">Pending Teachers</h5>
+          <h2 class="card-text text-right">
+            <i class="fas fa-spinner me-2"></i>{{ pending_teacher }}
+          </h2>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

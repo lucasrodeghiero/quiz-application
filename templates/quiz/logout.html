@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2rem 1rem 2rem 1rem;
+      background-color: #f8f9fa;
+      flex: 1;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 4rem;
+      color: rgb(31, 48, 65);
+      margin-bottom: 1rem;
+      font-family: 'Alexandria';
+    }
+
+    @media (max-width: 1308px) {
+      .hero {
+        padding: 5rem 1rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 5rem 1rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 4rem 1rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero {
+        padding: 3rem 1rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  {% include "quiz/navbar.html" %}
+
+  <section id="section-hero" class="hero">
+    <div class="hero-content">
+      <h2>You have successfully logged out.</h2>
+    </div>
+  </section>
+
+  {% include "quiz/footer.html" %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

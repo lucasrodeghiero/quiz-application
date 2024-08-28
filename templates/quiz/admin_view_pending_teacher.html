@@ -1,0 +1,95 @@
+{% extends 'quiz/adminbase.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending Teachers</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-TXs3jA5Pzx8drOzn8t+DuHHRs6dU4n9tTOkE+x2ms+J4nV2ZOGtL6IgY2n6dP5Q2" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-G8b7XH/pClS8DzlFMiXJ95IDPzbLyvs1P+1TtbVD+wfgIupKQn/qmdrgWgCZM5Szn8u8RV0r6lCAsHf1EFA8Rw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h5 class="card-title text-center mb-0">Pending Teachers</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Profile Picture</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Approve</th>
+                <th>Reject</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in teachers %}
+              <tr>
+                <td>{{ t.get_name }}</td>
+                <td>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal{{ t.id }}">
+                    <img src="{% static t.profile_pic.url %}" alt="Profile Pic" class="img-thumbnail" width="40px" height="40px">
+                  </a>
+                </td>
+                <td>{{ t.mobile }}</td>
+                <td>{{ t.address }}</td>
+                <td>
+                  <a href="{% url 'approve-teacher' t.id %}" class="btn btn-primary btn-sm" role="button">
+                    <i class="fas fa-check"></i> Approve
+                  </a>
+                </td>
+                <td>
+                  <a href="{% url 'reject-teacher' t.id %}" class="btn btn-danger btn-sm" role="button">
+                    <i class="fas fa-times"></i> Reject
+                  </a>
+                </td>
+              </tr>
+
+              <!-- Modal for Enlarged Image -->
+              <div class="modal fade" id="imageModal{{ t.id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ t.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="imageModalLabel{{ t.id }}">Profile Picture</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                      <img src="{% static t.profile_pic.url %}" alt="Profile Pic" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle (Popper.js included) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-13hC5YmVe5QFqYmURqwU4aRChD0ABsyr9YV0Kg++qVCA6MxFqjUj5Gt1z8jOm+dL" crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+    integrity="sha512-M/WPpKtFeaYhWL7bCUpg6iDZkW4rK++j0PVW2j6s2AjBBy6lG2OyQvRT2MPtQr3ycGpw3dAfMqM4Hax6wB38vg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
+{% endblock %}

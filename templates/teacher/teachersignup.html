@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Teacher Signup</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+  <style>
+    :root {
+      --bs-body-bg: #f8f9fa !important;
+      /* Override Bootstrap's default background color */
+      min-height: 100vh;
+    }
+
+    body {
+      background-color: var(--bs-body-bg);
+      font-family: 'Roboto', sans-serif;
+      text-align: left;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .signup-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 1rem; /* Adjust padding as needed */
+      background-color: #f8f9fa;
+      min-height: 80vh;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    .signup-hero-content {
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .signup-hero h1 {
+      font-size: 3.5rem;
+      color: #343a40; /* Adjust text color */
+      margin-bottom: 1rem;
+      font-family: 'Alexandria';
+    }
+
+    .signup-hero p {
+      font-size: 1.5rem;
+      color: #6c757d;
+      margin-bottom: 1.5rem;
+    }
+
+    .signup-form {
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: 'Alexandria';
+    }
+
+    .form-control {
+      border-radius: 4px;
+      border-color: #ddd;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      background-color: #5b9bf1 !important; /* New color */
+      border-color: #5b9bf1 !important; /* New color */
+      width: 45%;
+      height: 40px;
+      border-radius: 20px;
+      font-family: 'Alexandria';
+      margin-top: 13px;
+    }
+
+    .btn-primary:hover {
+      background-color: #4b82ca; /* New color */
+      border-color: #4b82ca; /* New color */
+    }
+
+    .signup-title {
+      text-align: center;
+      color: #5b9bf1;
+      font-weight: bold;
+      margin-bottom: 30px;
+      font-family: 'Alexandria';
+    }
+
+    .login-link {
+      margin-top: 20px;
+      color: #5b9bf1;
+      font-family: 'Alexandria';
+      text-align: center;
+    }
+
+    .login-link a {
+      color: #5b9bf1;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 991px) {
+      .signup-hero {
+        padding: 4rem 1rem; /* Adjust padding as needed */
+      }
+
+      .signup-hero h1 {
+        font-size: 3rem;
+      }
+
+      .signup-hero p {
+        font-size: 1.25rem;
+      }
+
+      .signup-form {
+        padding: 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .signup-hero {
+        padding: 3rem 1rem; /* Adjust padding as needed */
+      }
+
+      .signup-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .signup-hero p {
+        font-size: 1rem;
+      }
+
+      .signup-form {
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+
+      .btn-primary {
+        width: 100%;
+        font-size: 16px; /* Adjust font size if necessary */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  {% include "quiz/navbar.html" %}
+
+  <section id="section-hero" class="signup-hero">
+    <div class="signup-form">
+      <h3 class="signup-title">Teacher Signup</h3>
+      <form method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          {% render_field userForm.username|attr:'class:form-control' %}
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          {% render_field userForm.password|attr:'class:form-control' %}
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            {% render_field userForm.first_name|attr:'class:form-control' %}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            {% render_field userForm.last_name|attr:'class:form-control' %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="mobile" class="form-label">Mobile</label>
+            {% render_field teacherForm.mobile|attr:'class:form-control' %}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="address" class="form-label">Address</label>
+            {% render_field teacherForm.address|attr:'class:form-control' %}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="profile_pic" class="form-label">Profile Picture</label>
+          {% render_field teacherForm.profile_pic|attr:'class:form-control' %}
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+      </form>
+      <div class="login-link">
+        Already have an account? <a href="{% url 'teacherlogin' %}">Login here.</a>
+      </div>
+    </div>
+  </section>
+
+  {% include "quiz/footer.html" %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
