@@ -1,53 +1,39 @@
 {% extends 'student/studentbase.html' %}
+{% load static %}
+
 {% block content %}
-{%load static%}
-
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-  <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
-
-    h6 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-  </style>
-</head>
-<br><br>
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title">Quizzes</h6>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3 class="card-title text-center">Quizzes</h3>
     </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-
-          <th>Quiz Name</th>
-
-          <th>Take Exam</th>
-        </tr>
-      </thead>
-      {% for t in quizzes %}
-      <tr>
-
-        <td> {{t.quiz_name}}</td>
-
-        <td><a class="btn btn-danger btn-xs" href="{% url 'take-exam' t.id  %}"><span
-              class="glyphicon glyphicon-circle-arrow-right"></span></a></td>
-      </tr>
-      {% endfor %}
-    </table>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Quiz Name</th>
+              <th>Take Exam</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in quizzes %}
+            <tr>
+              <td>{{ t.quiz_name }}</td>
+              <td>
+                <a class="btn btn-danger btn-sm" href="{% url 'take-exam' t.id %}" title="Take Exam">
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
-<br><br><br><br><br><br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 {% endblock content %}
