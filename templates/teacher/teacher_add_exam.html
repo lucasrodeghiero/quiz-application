@@ -2,7 +2,6 @@
 {% load widget_tweaks %}
 {% block content %}
 
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,18 +16,23 @@
 
 <h2 style="text-align:center; color:blue;">Add Quiz</h2>
 <form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
-  {%csrf_token%}
+  {% csrf_token %}
   <div class="form-group">
     <label for="quiz_name">Exam Name</label>
     {% render_field quizForm.quiz_name class="form-control" placeholder="Java" %}
 
-    <label for="question_number">Total Question</label>
+    <label for="question_number">Total Questions</label>
     {% render_field quizForm.question_number class="form-control" placeholder="10" %}
 
     <label for="total_marks">Total Marks</label>
     {% render_field quizForm.total_marks class="form-control" placeholder="50" %}
-  </div>
 
+    <!-- Add the visibility checkbox -->
+    <div class="form-check">
+      <label for="is_visible" class="form-check-label">Visible to Students</label>
+      {% render_field quizForm.is_visible class="form-check-input" %}
+    </div>
+  </div>
 
   <button type="submit" class="btn btn-primary">ADD</button>
 </form>

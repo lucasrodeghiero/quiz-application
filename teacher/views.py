@@ -55,17 +55,28 @@ def teacher_exam_view(request):
     return render(request,'teacher/teacher_exam.html')
 
 
-@login_required(login_url='teacherlogin')
-@user_passes_test(is_teacher)
+# @login_required(login_url='teacherlogin')
+# @user_passes_test(is_teacher)
+# def teacher_add_exam_view(request):
+#     quizForm = QFORM.QuizForm()  # Use the correct form name here
+#     if request.method == 'POST':
+#         quizForm = QFORM.QuizForm(request.POST)
+#         if quizForm.is_valid():        
+#             quizForm.save()
+#         else:
+#             print("Form is invalid")
+#         return HttpResponseRedirect('/teacher/teacher-view-exam')
+#     return render(request, 'teacher/teacher_add_exam.html', {'quizForm': quizForm})
+
 def teacher_add_exam_view(request):
-    quizForm = QFORM.QuizForm()  # Use the correct form name here
+    quizForm = QuizForm()
     if request.method == 'POST':
-        quizForm = QFORM.QuizForm(request.POST)
-        if quizForm.is_valid():        
+        quizForm = QuizForm(request.POST)
+        if quizForm.is_valid():
             quizForm.save()
+            return HttpResponseRedirect('/teacher/teacher-view-exam')
         else:
-            print("form is invalid")
-        return HttpResponseRedirect('/teacher/teacher-view-exam')
+            print("Form is invalid")
     return render(request, 'teacher/teacher_add_exam.html', {'quizForm': quizForm})
 
 
