@@ -18,4 +18,7 @@ path('teacher-view-question', views.teacher_view_question_view,name='teacher-vie
 path('teacher-view-student', views.teacher_view_student,name='teacher-view-student'),
 path('see-question/<int:pk>', views.see_question_view,name='see-question'),
 path('remove-question/<int:pk>', views.remove_question_view,name='remove-question'),
+
+path('toggle-quiz-visibility/<int:pk>/', views.toggle_quiz_visibility, name='toggle-quiz-visibility'),
+
 ]

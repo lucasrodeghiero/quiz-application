@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import get_object_or_404, render, redirect
 from . import forms,models
+from django.urls import reverse, path
 from django.db.models import Sum
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
@@ -10,6 +11,11 @@ from quiz import models as QMODEL
 from student import models as SMODEL
 from quiz import forms as QFORM
 from quiz.forms import QuizForm
+
+
+
+
+
 
 
 
@@ -86,6 +92,22 @@ def teacher_view_exam_view(request):
     quizzes = QMODEL.Quiz.objects.all()
     return render(request,'teacher/teacher_view_exam.html',{'quizzes':quizzes})
 
+# @login_required(login_url='teacherlogin')
+# def toggle_quiz_visibility(request, pk):
+#     quiz = get_object_or_404(models.Quiz, id=pk)
+#     quiz.is_visible = not quiz.is_visible  # Toggle the visibility
+#     quiz.save()
+#     return HttpResponseRedirect(reverse('teacher-view-exam'))
+
+@login_required(login_url='teacherlogin')
+def toggle_quiz_visibility(request, pk):
+    quiz = get_object_or_404(models.Quiz, id=pk)
+    quiz.is_visible = not quiz.is_visible
+    quiz.save()
+    return HttpResponseRedirect(reverse('teacher-view-exam'))
+
+
+  
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
 def delete_exam_view(request,pk):
@@ -93,7 +115,7 @@ def delete_exam_view(request,pk):
     quiz.delete()
     return HttpResponseRedirect('/teacher/teacher-view-exam')
 
-@login_required(login_url='adminlogin')
+@login_required(login_url='teacherlogin')
 def teacher_question_view(request):
     return render(request,'teacher/teacher_question.html')
 
