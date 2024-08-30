@@ -4,8 +4,6 @@
 
 <head>
   <meta charset="utf-8">
-
-
   <style media="screen">
     a:link {
       text-decoration: none;
@@ -152,22 +150,19 @@
 
   </style>
 
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
-
 </head>
 
 <body>
 
   <input type="checkbox" id="check">
-  <!--header area start-->
-  <header>
-    <label for="check">
-      <i style="left: 200px;margin-top: 17px;" class="fas fa-bars" id="sidebar_btn"></i>
-    </label>
+   <!--header area start-->
+   <header>
     <div class="left_area">
-      <h3>Online Quiz</h3>
+      <label for="check" class="sidebar_btn">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <h3>WeQuiz</h3>
     </div>
     <div class="right_area">
       <a href="/logout" class="logout_btn">Logout</a>
@@ -193,15 +188,13 @@
 
   <!--content start-->
   <div class="content">
-    <br><br><br><br><br>
+    <br><br><br><br>
     {% block content %}
-
     {% endblock content %}
 
-
-    <br><br><br>
-    {% include "quiz/footer.html" %}
   </div>
+  
+  {% include "quiz/footer_dashboard.html" %}
   <!--content end-->
 </body>
 

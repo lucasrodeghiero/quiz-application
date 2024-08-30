@@ -207,7 +207,7 @@ def toggle_quiz_visibility(request, pk):
     quiz = get_object_or_404(models.Quiz, id=pk)
     quiz.is_visible = not quiz.is_visible  # Toggle the visibility
     quiz.save()
-    return HttpResponseRedirect(reverse('admin-view-quiz'))
+    return HttpResponseRedirect(reverse('teacher-view-exam'))
 
 
 @login_required(login_url='adminlogin')

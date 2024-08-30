@@ -5,7 +5,7 @@ class Quiz(models.Model):
    quiz_name = models.CharField(max_length=50)
    question_number = models.PositiveIntegerField()
    total_marks = models.PositiveIntegerField()
-   is_visible = models.BooleanField(default=True)  # Field to track visibility
+   is_visible = models.BooleanField(default=False) # Field to track visibility
 
 
    def __str__(self):
