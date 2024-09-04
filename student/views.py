@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render,redirect,reverse
 from . import forms,models
 from django.db.models import Sum
@@ -8,8 +9,6 @@ from django.conf import settings
 from datetime import date, timedelta
 from quiz import models as QMODEL
 from teacher import models as TMODEL
-
-##
 
 def student_signup_view(request):
     userForm=forms.StudentUserForm()
@@ -100,12 +99,19 @@ def take_exam_view(request, pk):
 def start_exam_view(request, pk):
     try:
         quiz = QMODEL.Quiz.objects.get(id=pk, is_visible=True)
-        questions = QMODEL.Question.objects.filter(quiz=quiz)
+        questions = list(QMODEL.Question.objects.filter(quiz=quiz))  # Convert QuerySet to list and shuffle
+        random.shuffle(questions)
+        
+        # Store shuffled question IDs in session to track the order for the answer submission
+        request.session['questions_order'] = [q.id for q in questions]
+
     except QMODEL.Quiz.DoesNotExist:
         return HttpResponseRedirect(reverse('student_exam_view'))
+    
     if request.method == 'POST':
         # Add logic for processing answers if needed
         pass
+    
     response = render(request, 'student/start_exam.html', {'quiz': quiz, 'questions': questions})
     response.set_cookie('quiz_id', quiz.id)
     return response
@@ -114,26 +120,27 @@ def start_exam_view(request, pk):
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def calculate_marks_view(request):
-    if request.COOKIES.get('quiz_id') is not None:
-        quiz_id = request.COOKIES.get('quiz_id')
-        quiz=QMODEL.Quiz.objects.get(id=quiz_id)
+    quiz_id = request.COOKIES.get('quiz_id')
+    if quiz_id:
+        quiz = QMODEL.Quiz.objects.get(id=quiz_id)
+        question_ids = request.session.get('questions_order', [])
+        total_marks = 0
         
-        total_marks=0
-        questions=QMODEL.Question.objects.all().filter(quiz=quiz)
-        for i in range(len(questions)):
-            
-            selected_ans = request.COOKIES.get(str(i+1))
-            actual_answer = questions[i].answer
-            if selected_ans == actual_answer:
-                total_marks = total_marks + questions[i].marks
+        for i, question_id in enumerate(question_ids):
+            question = QMODEL.Question.objects.get(id=question_id)
+            selected_ans = request.COOKIES.get(str(i + 1))
+            if selected_ans == question.answer:
+                total_marks += question.marks
+        
         student = models.Student.objects.get(user_id=request.user.id)
         result = QMODEL.Result()
-        result.marks=total_marks
-        result.exam=quiz
-        result.student=student
+        result.marks = total_marks
+        result.exam = quiz
+        result.student = student
         result.save()
 
         return HttpResponseRedirect('view-result')
+
 
 
 

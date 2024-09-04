@@ -132,7 +132,6 @@
 
     .content {
       margin-left: 250px;
-      background: url({% static 'background.png' %}) no-repeat;
       background-position: center;
       background-size: cover;
       height: 100vh;
@@ -171,8 +170,15 @@
   <!--sidebar start-->
   <div class="sidebar">
     <center>
-      <img src="{% static 'Student/pyth.png' %}" class="profile_image" alt="">
-      <h4>{{request.user.first_name}}</h4>
+      <!-- Check if student has a profile picture -->
+     {% if student.profile_pic %}
+        <!-- Display the uploaded profile picture -->
+        <img src="{{ student.profile_pic.url }}" class="profile_image" alt="Profile Picture">
+      {% else %}
+        <!-- Display a default placeholder if no picture is uploaded -->
+        <img src="{% static 'image/student.png' %}" class="profile_image" alt="Default Profile Picture">
+      {% endif %}
+      <h4>{{ request.user.first_name }}</h4>
       <h6 style="color: #ffffff;">(Student)</h6>
     </center>
 
