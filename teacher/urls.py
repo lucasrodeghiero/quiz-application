@@ -10,6 +10,15 @@ path('teacher-exam', views.teacher_exam_view,name='teacher-exam'),
 path('teacher-add-exam', views.teacher_add_exam_view,name='teacher-add-exam'),
 path('teacher-view-exam', views.teacher_view_exam_view,name='teacher-view-exam'),
 path('delete-exam/<int:pk>', views.delete_exam_view,name='delete-exam'),
+path('teacher-view-student-marks', views.teacher_view_student_marks_view,name='teacher-view-student-marks'),
+path('teacher-view-marks/<int:pk>', views.teacher_view_marks_view,name='teacher-view-marks'), 
+path('teacher-check-marks/<int:pk>', views.teacher_check_marks_view,name='teacher-check-marks'),
+
+path('delete-student-teacher/<int:pk>', views.delete_student_view,name='delete-student-teacher'),
+path('delete-question-teacher/<int:pk>', views.delete_question_view,name='delete-question-teacher'),
+
+
+
 
 
 path('teacher-question', views.teacher_question_view,name='teacher-question'),

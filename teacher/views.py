@@ -3,7 +3,7 @@ from . import forms,models
 from django.urls import reverse, path
 from django.db.models import Sum
 from django.contrib.auth.models import Group
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.conf import settings
 from datetime import date, timedelta
@@ -11,9 +11,46 @@ from quiz import models as QMODEL
 from student import models as SMODEL
 from quiz import forms as QFORM
 from quiz.forms import QuizForm
+from django.http import Http404
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 
+
+
+
+@login_required(login_url='teacherlogin')
+def teacher_view_student_marks_view(request):
+    students= SMODEL.Student.objects.all()
+    return render(request,'teacher/teacher_view_student_marks.html',{'students':students})
+
+@login_required(login_url='teacherlogin')
+def teacher_view_marks_view(request,pk):
+    quizzes = QMODEL.Quiz.objects.all()
+    response =  render(request,'teacher/teacher_view_marks.html',{'quizzes':quizzes})
+    response.set_cookie('student_id',str(pk))
+    return response
+
+
+    
+@login_required(login_url='teacherlogin')
+def teacher_check_marks_view(request, pk):
+    # Retrieve the Quiz instance using get() instead of all()
+    quiz = QMODEL.Quiz.objects.get(id=pk)
+    
+    # Get the student from cookies
+    student_id = request.COOKIES.get('student_id')
+    student = SMODEL.Student.objects.get(id=student_id)
+
+    # Filter results by quiz and student
+    results = QMODEL.Result.objects.filter(exam=quiz, student=student)
+    
+    return render(request, 'teacher/teacher_check_marks.html', {'results': results})
+
+def aboutus_view(request):
+    return render(request,'quiz/aboutus.html')
 
 
 
@@ -159,3 +196,18 @@ def remove_question_view(request,pk):
 def teacher_view_student(request):
     students= SMODEL.Student.objects.all()
     return render(request,'teacher/teacher_view_student.html',{'students':students})
+
+
+@login_required(login_url='teacherlogin')
+def delete_student_view(request,pk):
+    student=SMODEL.Student.objects.get(id=pk)
+    user=User.objects.get(id=student.user_id)
+    user.delete()
+    student.delete()
+    return HttpResponseRedirect('/teacher/teacher-view-student')
+
+@login_required(login_url='teacherlogin')
+def delete_question_view(request,pk):
+    question=QMODEL.Question.objects.all().filter(quiz_id=pk)
+    question.delete()
+    return render(request,'teacher/see_question.html',{'question':question})

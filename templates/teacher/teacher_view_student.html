@@ -16,7 +16,7 @@
               <th>Profile Picture</th>
               <th>Mobile</th>
               <th>Address</th>
-              <th>Update</th>
+              
               <th>Delete</th>
             </tr>
           </thead>
@@ -31,13 +31,9 @@
               </td>
               <td>{{ student.mobile }}</td>
               <td>{{ student.address }}</td>
+             
               <td>
-                <a href="{% url 'update-student' student.id %}" class="btn btn-primary btn-sm" title="Update">
-                  <i class="fas fa-edit"></i>
-                </a>
-              </td>
-              <td>
-                <a href="{% url 'delete-student' student.id %}" class="btn btn-danger btn-sm" title="Delete">
+                <a href="{% url 'delete-student-teacher' student.id %}" class="btn btn-danger btn-sm" title="Delete">
                   <i class="fas fa-trash-alt"></i>
                 </a>
               </td>
