@@ -8,7 +8,7 @@
       <h3 class="card-title text-center">{{ quiz.quiz_name }}</h3>
     </div>
     <div class="card-body">
-      <form class="form" autocomplete="off" onsubmit="return saveAns()" action="/student/calculate-marks" method="POST">
+      <form class="form" autocomplete="off" onsubmit="return validateAndSaveAns()" action="/student/calculate-marks" method="POST">
         {% csrf_token %}
         {% for q in questions %}
         <div class="mb-4">
@@ -48,8 +48,28 @@
           </div>
         </div>
         {% endfor %}
+        <input type="hidden" id="total-questions" value="{{ questions|length }}">
         <button class="btn btn-info btn-lg w-100" type="submit">Submit</button>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        There are empty questions you have not answered. Are you sure you want to submit?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="confirmSubmit">Submit Anyway</button>
+      </div>
     </div>
   </div>
 </div>
@@ -57,13 +77,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
+  function validateAndSaveAns() {
+    var totalQuestions = parseInt(document.getElementById('total-questions').value, 10);
+    var unanswered = false;
+    
+    for (var i = 1; i <= totalQuestions; i++) {
+      var question = document.querySelector('input[name="' + i + '"]:checked');
+      if (!question) {
+        unanswered = true;
+        break;
+      }
+    }
+
+    if (unanswered) {
+      // Show custom modal
+      var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+      var confirmSubmitButton = document.getElementById('confirmSubmit');
+      
+      confirmModal.show();
+
+      confirmSubmitButton.addEventListener('click', function () {
+        saveAns();
+        document.querySelector('form').submit(); // Submit the form after confirmation
+      });
+
+      return false; // Prevent default form submission
+    } else {
+      saveAns();
+      return true;  // Allow form submission
+    }
+  }
+
   function saveAns() {
     var ele = document.getElementsByTagName('input');
     for (var i = 0; i < ele.length; i++) {
-      if (ele[i].type === "radio") {
-        if (ele[i].checked) {
-          setCookie(ele[i].name, ele[i].value, 3);
-        }
+      if (ele[i].type === "radio" && ele[i].checked) {
+        setCookie(ele[i].name, ele[i].value, 3);
       }
     }
   }
