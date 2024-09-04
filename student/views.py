@@ -10,6 +10,9 @@ from datetime import date, timedelta
 from quiz import models as QMODEL
 from teacher import models as TMODEL
 
+from django.contrib.auth.views import LoginView
+from django.contrib import messages
+
 
 def student_signup_view(request):
     userForm = forms.StudentUserForm()
@@ -35,6 +38,20 @@ def student_signup_view(request):
             return HttpResponseRedirect('studentlogin')
     return render(request, 'student/studentsignup.html', context=mydict)
 
+class StudentLoginView(LoginView):
+    template_name = 'student/studentlogin.html'
+    def form_valid(self, form):
+        user = form.get_user()
+        
+        if user.groups.filter(name='STUDENT').exists():
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, "Only students can log in here.")
+            return redirect('studentlogin')
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Invalid username or password. Please try again.")
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 def is_student(user):

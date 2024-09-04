@@ -17,6 +17,25 @@ from teacher import forms as TFORM
 from student import forms as SFORM
 from django.contrib.auth.models import User
 
+from django.contrib.auth.views import LoginView
+from django.contrib import messages
+
+class AdminLoginView(LoginView):
+    template_name = 'quiz/adminlogin.html'  # Path to your admin login template
+
+    def form_valid(self, form):
+        user = form.get_user()
+        
+        # Check if the user belongs to the "ADMIN" group
+        if user.groups.filter(name='ADMIN').exists():
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, "Only admins can log in here.")
+            return redirect('adminlogin')
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Invalid username or password. Please try again.")
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 def home_view(request):

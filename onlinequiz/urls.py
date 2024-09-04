@@ -9,6 +9,7 @@ urlpatterns = [
     path('teacher/',include('teacher.urls')),
     path('student/',include('student.urls')),
 
+    path('adminlogin', views.AdminLoginView.as_view(), name='adminlogin'),
 
     path('',views.home_view,name=''),
     path('logout', LogoutView.as_view(template_name='quiz/logout.html'),name='logout'),
