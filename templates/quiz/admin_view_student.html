@@ -13,9 +13,9 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Profile Picture</th>
+              <th>Username</th>
               <th>Mobile</th>
-              <th>Address</th>
+              <th>Email</th>
               <th>Update</th>
               <th>Delete</th>
             </tr>
@@ -24,13 +24,9 @@
             {% for student in students %}
             <tr>
               <td>{{ student.get_name }}</td>
-              <td>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal{{ student.id }}">
-                  <img src="{% static student.profile_pic.url %}" alt="Profile Pic" class="img-thumbnail" width="40px" height="40px">
-                </a>
-              </td>
+              <td>{{ student.user.username }}</td>
               <td>{{ student.mobile }}</td>
-              <td>{{ student.address }}</td>
+              <td>{{ student.email }}</td>
               <td>
                 <a href="{% url 'update-student' student.id %}" class="btn btn-primary btn-sm" title="Update">
                   <i class="fas fa-edit"></i>
@@ -42,21 +38,6 @@
                 </a>
               </td>
             </tr>
-
-            <!-- Modal for Enlarged Image -->
-            <div class="modal fade" id="imageModal{{ student.id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ student.id }}" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel{{ student.id }}">Profile Picture</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body text-center">
-                    <img src="{% static student.profile_pic.url %}" alt="Profile Pic" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {% endfor %}
           </tbody>

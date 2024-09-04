@@ -2,26 +2,31 @@
 {% load widget_tweaks %}
 {% block extra_head %}
 
-  <style media="screen">
-    input[type=text], select, input[type=number], input[type=password], textarea {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
+<style media="screen">
+  input[type=text],
+  select,
+  input[type=number],
+  input[type=password],
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
-    .form-control {
-      margin-bottom: 20px;
-    }
-  </style>
+  .form-control {
+    margin-bottom: 20px;
+  }
+</style>
 {% endblock extra_head %}
 
 {% block content %}
 <h2 class="text-center text-dark">Update Student</h2>
-<form method="post" autocomplete="off" enctype="multipart/form-data" style="margin: 100px auto; max-width: 600px; margin-top: 50px;">
+<form method="post" autocomplete="off" enctype="multipart/form-data"
+  style="margin: 100px auto; max-width: 600px; margin-top: 50px;">
   {% csrf_token %}
   <div class="form-group mb-4">
     <label for="first_name">First Name</label>
@@ -39,8 +44,8 @@
   </div>
 
   <div class="form-group mb-4">
-    <label for="address">Address</label>
-    {% render_field studentForm.address class="form-control" placeholder="Address" %}
+    <label for="email">Email</label>
+    {% render_field studentForm.email class="form-control" placeholder="email@vu.com" %}
   </div>
 
   <div class="form-group mb-4">
@@ -51,11 +56,6 @@
   <div class="form-group mb-4">
     <label for="password">Password</label>
     {% render_field userForm.password class="form-control" placeholder="Password" %}
-  </div>
-
-  <div class="form-group mb-4">
-    <label for="profile_pic">Profile Picture</label>
-    {% render_field studentForm.profile_pic class="form-control" placeholder="Profile Picture" %}
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>

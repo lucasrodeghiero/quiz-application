@@ -52,30 +52,30 @@ def teacher_check_marks_view(request, pk):
 def aboutus_view(request):
     return render(request,'quiz/aboutus.html')
 
-
-
-
-
-
 def teacher_signup_view(request):
-    userForm=forms.TeacherUserForm()
-    teacherForm=forms.TeacherForm()
-    mydict={'userForm':userForm,'teacherForm':teacherForm}
-    if request.method=='POST':
-        userForm=forms.TeacherUserForm(request.POST)
-        teacherForm=forms.TeacherForm(request.POST,request.FILES)
+    userForm = forms.TeacherUserForm()
+    teacherForm = forms.TeacherForm()
+    mydict = {'userForm': userForm, 'teacherForm': teacherForm}
+    
+    if request.method == 'POST':
+        userForm = forms.TeacherUserForm(request.POST)
+        teacherForm = forms.TeacherForm(request.POST)  # Removed request.FILES since profile_pic is not used.
+        
         if userForm.is_valid() and teacherForm.is_valid():
-            user=userForm.save()
+            user = userForm.save(commit=False)
             user.set_password(user.password)
             user.save()
-            teacher=teacherForm.save(commit=False)
-            teacher.user=user
+            
+            teacher = teacherForm.save(commit=False)
+            teacher.user = user
             teacher.save()
-            my_teacher_group = Group.objects.get_or_create(name='TEACHER')
-            my_teacher_group[0].user_set.add(user)
-        return HttpResponseRedirect('teacherlogin')
-    return render(request,'teacher/teachersignup.html',context=mydict)
-
+            
+            my_teacher_group, created = Group.objects.get_or_create(name='TEACHER')
+            my_teacher_group.user_set.add(user)
+            
+            return HttpResponseRedirect('teacherlogin')
+    
+    return render(request, 'teacher/teachersignup.html', context=mydict)
 
 
 def is_teacher(user):

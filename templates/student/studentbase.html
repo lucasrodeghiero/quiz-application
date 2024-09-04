@@ -160,7 +160,7 @@
       <label for="check" class="sidebar_btn">
         <i class="fas fa-bars" id="sidebar_btn"></i>
       </label>
-      <h3>Online Quiz</h3>
+      <h3>MCQuiz</h3>
     </div>
     <div class="right_area">
       <a href="/logout" class="logout_btn">Logout</a>
@@ -171,12 +171,12 @@
   <div class="sidebar">
     <center>
       <!-- Check if student has a profile picture -->
-     {% if student.profile_pic %}
-        <!-- Display the uploaded profile picture -->
-        <img src="{{ student.profile_pic.url }}" class="profile_image" alt="Profile Picture">
+      {% if student.profile_pic %}
+      <!-- Display the uploaded profile picture -->
+      <img src="{{ student.profile_pic.url }}" class="profile_image" alt="Profile Picture">
       {% else %}
-        <!-- Display a default placeholder if no picture is uploaded -->
-        <img src="{% static 'image/student.png' %}" class="profile_image" alt="Default Profile Picture">
+      <!-- Display a default placeholder if no picture is uploaded -->
+      <img src="{% static 'image/student.png' %}" class="profile_image" alt="Default Profile Picture">
       {% endif %}
       <h4>{{ request.user.first_name }}</h4>
       <h6 style="color: #ffffff;">(Student)</h6>
@@ -194,7 +194,7 @@
     {% block content %}
     {% endblock content %}
     <br><br><br>
-    {% include "quiz/footer.html" %}
+    {% include "quiz/footer_dashboard.html" %}
   </div>
   <!--content end-->
 

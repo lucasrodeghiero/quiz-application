@@ -28,7 +28,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 4rem 1rem; /* Adjust padding as needed */
+      padding: 4rem 1rem;
+      /* Adjust padding as needed */
       background-color: #f8f9fa;
       min-height: 80vh;
       box-sizing: border-box;
@@ -42,7 +43,8 @@
 
     .signup-hero h1 {
       font-size: 3.5rem;
-      color: #343a40; /* Adjust text color */
+      color: #343a40;
+      /* Adjust text color */
       margin-bottom: 1rem;
       font-family: 'Alexandria';
     }
@@ -76,8 +78,10 @@
     }
 
     .btn-primary {
-      background-color: #5b9bf1 !important; /* New color */
-      border-color: #5b9bf1 !important; /* New color */
+      background-color: #5b9bf1 !important;
+      /* New color */
+      border-color: #5b9bf1 !important;
+      /* New color */
       width: 45%;
       height: 40px;
       border-radius: 20px;
@@ -86,8 +90,10 @@
     }
 
     .btn-primary:hover {
-      background-color: #4b82ca; /* New color */
-      border-color: #4b82ca; /* New color */
+      background-color: #4b82ca;
+      /* New color */
+      border-color: #4b82ca;
+      /* New color */
     }
 
     .signup-title {
@@ -117,7 +123,8 @@
 
     @media (max-width: 991px) {
       .signup-hero {
-        padding: 4rem 1rem; /* Adjust padding as needed */
+        padding: 4rem 1rem;
+        /* Adjust padding as needed */
       }
 
       .signup-hero h1 {
@@ -137,7 +144,8 @@
 
     @media (max-width: 767px) {
       .signup-hero {
-        padding: 3rem 1rem; /* Adjust padding as needed */
+        padding: 3rem 1rem;
+        /* Adjust padding as needed */
       }
 
       .signup-hero h1 {
@@ -157,7 +165,8 @@
 
       .btn-primary {
         width: 100%;
-        font-size: 16px; /* Adjust font size if necessary */
+        font-size: 16px;
+        /* Adjust font size if necessary */
       }
     }
   </style>
@@ -195,13 +204,9 @@
             {% render_field studentForm.mobile|attr:"class:form-control" required="required" %}
           </div>
           <div class="col-md-6 mb-3">
-            <label for="address" class="form-label">Address</label>
-            {% render_field studentForm.address|attr:"class:form-control" required="required" %}
+            <label for="email" class="form-label">Email</label>
+            {% render_field studentForm.email|attr:"class:form-control" required="required" %}
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="profile_pic" class="form-label">Profile Picture</label>
-          {% render_field studentForm.profile_pic|attr:"class:form-control" required="required" %}
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Sign Up</button>

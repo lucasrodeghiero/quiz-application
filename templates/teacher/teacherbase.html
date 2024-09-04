@@ -147,7 +147,6 @@
     #check {
       display: none;
     }
-
   </style>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -156,13 +155,13 @@
 <body>
 
   <input type="checkbox" id="check">
-   <!--header area start-->
-   <header>
+  <!--header area start-->
+  <header>
     <div class="left_area">
       <label for="check" class="sidebar_btn">
         <i class="fas fa-bars" id="sidebar_btn"></i>
       </label>
-      <h3>WeQuiz</h3>
+      <h3>MCQuiz</h3>
     </div>
     <div class="right_area">
       <a href="/logout" class="logout_btn">Logout</a>
@@ -175,12 +174,12 @@
 
       <img src="{% static " image/teacher.png" %}" class="profile_image" alt="">
       <h4>{{request.user.first_name}}</h4>
-      <h6 style="color: rgb(255, 255, 255);">( Teacher )</h6>
+      <h6 style="color: rgb(255, 255, 255);">(Teacher)</h6>
 
     </center>
 
     <a href="/teacher/teacher-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-    <a href="/teacher/teacher-exam"><i class="fas fa-book"></i><span>Exam</span></a>
+    <a href="/teacher/teacher-exam"><i class="fas fa-book"></i><span>Quiz</span></a>
     <a href="/teacher/teacher-question"><i class="fas fa-question-circle"></i><span>Questions</span></a>
   </div>
   <!--sidebar end-->
@@ -193,7 +192,7 @@
     {% endblock content %}
 
   </div>
-  
+
   {% include "quiz/footer_dashboard.html" %}
   <!--content end-->
 </body>

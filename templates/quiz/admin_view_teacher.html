@@ -13,9 +13,8 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Profile Picture</th>
               <th>Mobile</th>
-              <th>Address</th>
+              <th>Email</th>
               <th>Update</th>
               <th>Delete</th>
             </tr>
@@ -24,13 +23,8 @@
             {% for teacher in teachers %}
             <tr>
               <td>{{ teacher.get_name }}</td>
-              <td>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal{{ teacher.id }}">
-                  <img src="{% static teacher.profile_pic.url %}" alt="Profile Pic" class="img-thumbnail" width="40px" height="40px">
-                </a>
-              </td>
               <td>{{ teacher.mobile }}</td>
-              <td>{{ teacher.address }}</td>
+              <td>{{ teacher.email }}</td>
               <td>
                 <a href="{% url 'update-teacher' teacher.id %}" class="btn btn-primary btn-sm" title="Update">
                   <i class="fas fa-edit"></i>
@@ -42,21 +36,6 @@
                 </a>
               </td>
             </tr>
-
-            <!-- Modal -->
-            <div class="modal fade" id="imageModal{{ teacher.id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ teacher.id }}" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel{{ teacher.id }}">Profile Picture</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body text-center">
-                    <img src="{% static teacher.profile_pic.url %}" alt="Profile Pic" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {% endfor %}
           </tbody>
