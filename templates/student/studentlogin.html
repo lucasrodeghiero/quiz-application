@@ -169,6 +169,18 @@
                 /* Adjust padding for smaller screens */
             }
         }
+
+        .custom-alert {
+            max-width: 25rem; /* Set a maximum width */
+            font-size: 0.875rem; /* Make the font smaller */
+            padding: 0.5rem !important; /* Adjust padding for a smaller alert box */
+            margin-top: 20px; /* Add some space above the alert */
+            background-color: #ded7f8; /* Lighter background color */
+            color: #721c24; /* Darker text color */
+            border-color: #ffffff !important; /* Border color to match background */
+            margin-left: auto; /* Center horizontally if needed */
+            margin-right: auto; /* Center horizontally if needed */
+        }
     </style>
 </head>
 
@@ -183,15 +195,24 @@
                 {% csrf_token %}
                 {% render_field form.username class="form-control" placeholder="Username" %}
                 {% render_field form.password class="form-control" placeholder="Password" %}
-                <input type="submit" value="Login">
-            </form>
+                {% if messages %}
+            <div class="alert alert-danger custom-alert" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
             <div class="signup-link">
                 Don't have an account? <a href="{% url 'studentsignup' %}">Sign up here.</a>
             </div>
+                <input type="submit" value="Login">
+            </form>
         </div>
     </section>
+    
 
     {% include "quiz/footer.html" %}
 </body>
+
 
 </html>

@@ -16,8 +16,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-
-
+from django.contrib.auth.views import LoginView
+from django.contrib import messages
 
 
 
@@ -32,8 +32,6 @@ def teacher_view_marks_view(request,pk):
     response =  render(request,'teacher/teacher_view_marks.html',{'quizzes':quizzes})
     response.set_cookie('student_id',str(pk))
     return response
-
-
     
 @login_required(login_url='teacherlogin')
 def teacher_check_marks_view(request, pk):
@@ -76,6 +74,25 @@ def teacher_signup_view(request):
             return HttpResponseRedirect('teacherlogin')
     
     return render(request, 'teacher/teachersignup.html', context=mydict)
+
+
+class TeacherLoginView(LoginView):
+    template_name = 'teacher/teacherlogin.html'  # Path to your teacher login template
+
+    def form_valid(self, form):
+        user = form.get_user()
+        
+        # Check if the user belongs to the "TEACHER" group
+        if user.groups.filter(name='TEACHER').exists():
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, "Only teachers can log in here.")
+            return redirect('teacherlogin')
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Invalid username or password. Please try again.")
+        return self.render_to_response(self.get_context_data(form=form))
+
 
 
 def is_teacher(user):

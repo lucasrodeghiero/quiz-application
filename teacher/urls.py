@@ -3,7 +3,9 @@ from teacher import views
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
-path('teacherlogin', LoginView.as_view(template_name='teacher/teacherlogin.html'),name='teacherlogin'),
+# Turn class StudentLoginView into a view function that can be used by Django's URL dispatcher
+path('teacherlogin', views.TeacherLoginView.as_view(), name='teacherlogin'),
+
 path('teachersignup', views.teacher_signup_view,name='teachersignup'),
 path('teacher-dashboard', views.teacher_dashboard_view,name='teacher-dashboard'),
 path('teacher-exam', views.teacher_exam_view,name='teacher-exam'),
