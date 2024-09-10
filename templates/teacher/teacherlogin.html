@@ -172,6 +172,22 @@
             margin-left: auto; /* Center horizontally if needed */
             margin-right: auto; /* Center horizontally if needed */
         }
+        .password-reset-link {
+            margin-top: 10px;
+            color: #5b9bf1;
+            font-family: 'Alexandria';
+        }
+
+        .password-reset-link  a {
+            color: #5b9bf1;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.875rem; /* Smaller font size */
+        }
+
+        .password-reset-link  a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -194,12 +210,12 @@
                 {% endfor %}
             </div>
             {% endif %}
-
-                <input type="submit" value="Login">
-            </form>
             <div class="signup-link">
                 Don't have an account? <a href="{% url 'teachersignup' %}">Sign up here.</a>
             </div>
+                <input type="submit" value="Login">
+                <p class="password-reset-link"><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+            </form>
         </div>
     </section>
 
