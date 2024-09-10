@@ -1,5 +1,8 @@
 {% extends 'quiz/adminbase.html' %}
 {% load widget_tweaks %}
+{% block content %}
+
+
 {% block extra_head %}
 <style media="screen">
   input[type=text],
@@ -22,7 +25,6 @@
 </style>
 {% endblock extra_head %}
 
-{% block content %}
 <h2 class="text-center text-dark">Update Teacher</h2>
 <form method="post" autocomplete="off" enctype="multipart/form-data"
   style="margin: 100px auto; max-width: 600px; margin-top: 50px;">

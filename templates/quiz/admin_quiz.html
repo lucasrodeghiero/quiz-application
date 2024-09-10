@@ -2,11 +2,7 @@
 {% load static %}
 {% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+{% block extra_head %}
   <style>
     .card.bg-primary {
       background-color: rgb(201, 141, 141) !important; /* Custom primary color */
@@ -24,7 +20,7 @@
       background-color: rgb(78, 133, 158) !important; /* Custom primary color */
     }
   </style>
-</head>
+{% endblock extra_head %}
 
 <div class="container py-5">
   <div class="row">
