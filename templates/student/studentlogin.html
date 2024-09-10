@@ -10,13 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
     <style>
-        /* body {
-            background-color: white;
-            font-family: 'Roboto', sans-serif;
-            text-align: left;
-            margin: 0;
-            min-height: 100vh;
-        } */
 
         .login-hero {
             display: flex;
@@ -181,6 +174,23 @@
             margin-left: auto; /* Center horizontally if needed */
             margin-right: auto; /* Center horizontally if needed */
         }
+
+        .password-reset-link {
+            margin-top: 10px;
+            color: #5b9bf1;
+            font-family: 'Alexandria';
+        }
+
+        .password-reset-link  a {
+            color: #5b9bf1;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.875rem; /* Smaller font size */
+        }
+
+        .password-reset-link  a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -206,6 +216,8 @@
                 Don't have an account? <a href="{% url 'studentsignup' %}">Sign up here.</a>
             </div>
                 <input type="submit" value="Login">
+                <p class="password-reset-link"><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+
             </form>
         </div>
     </section>
