@@ -1,10 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=254, unique=True)
-    mobile = models.CharField(max_length=20, null=False)
+    mobile = models.CharField(max_length=15, null=False, validators=[
+            RegexValidator(
+                regex=r'^\d+$',
+                message="Only digits allowed."
+            )
+        ]
+    )
     status= models.BooleanField(default=False)
 
     @property

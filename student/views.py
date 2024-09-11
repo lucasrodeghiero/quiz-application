@@ -15,10 +15,6 @@ from django.contrib import messages
 
 
 def student_signup_view(request):
-    userForm = forms.StudentUserForm()
-    studentForm = forms.StudentForm()
-    mydict = {'userForm': userForm, 'studentForm': studentForm}
-    
     if request.method == 'POST':
         userForm = forms.StudentUserForm(request.POST)
         studentForm = forms.StudentForm(request.POST)
@@ -36,7 +32,13 @@ def student_signup_view(request):
             my_student_group.user_set.add(user)
             
             return HttpResponseRedirect('studentlogin')
+    else:
+        userForm = forms.StudentUserForm()
+        studentForm = forms.StudentForm()
+
+    mydict = {'userForm': userForm, 'studentForm': studentForm}
     return render(request, 'student/studentsignup.html', context=mydict)
+
 
 class StudentLoginView(LoginView):
     template_name = 'student/studentlogin.html'
