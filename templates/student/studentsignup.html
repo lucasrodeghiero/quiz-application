@@ -162,7 +162,7 @@
         margin-top: 30px;
         margin-bottom: 30px;
       }
-
+      
       .btn-primary {
         width: 100%;
         font-size: 16px;
@@ -180,6 +180,7 @@
       <h3 class="signup-title">Student Signup</h3>
       <form method="POST" autocomplete="off" enctype="multipart/form-data">
         {% csrf_token %}
+        
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           {% render_field userForm.username|attr:"class:form-control" required="required" %}
@@ -202,6 +203,9 @@
           <div class="col-md-6 mb-3">
             <label for="mobile" class="form-label">Mobile</label>
             {% render_field studentForm.mobile|attr:"class:form-control" required="required" %}
+            {% if studentForm.mobile.errors %}
+              <div class="text-danger">{{ studentForm.mobile.errors }}</div>
+            {% endif %}
           </div>
           <div class="col-md-6 mb-3">
             <label for="email" class="form-label">Email</label>

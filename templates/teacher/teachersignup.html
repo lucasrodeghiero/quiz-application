@@ -201,6 +201,9 @@
           <div class="col-md-6 mb-3">
             <label for="mobile" class="form-label">Mobile</label>
             {% render_field teacherForm.mobile|attr:"class:form-control" required="required" %}
+            {% if teacherForm.mobile.errors %}
+            <div class="text-danger">{{ teacherForm.mobile.errors }}</div>
+            {% endif %}
           </div>
           <div class="col-md-6 mb-3">
             <label for="email" class="form-label">Email</label>

@@ -51,13 +51,9 @@ def aboutus_view(request):
     return render(request,'quiz/aboutus.html')
 
 def teacher_signup_view(request):
-    userForm = forms.TeacherUserForm()
-    teacherForm = forms.TeacherForm()
-    mydict = {'userForm': userForm, 'teacherForm': teacherForm}
-    
-    if request.method == 'POST':
+    if request.method == 'POST':    
         userForm = forms.TeacherUserForm(request.POST)
-        teacherForm = forms.TeacherForm(request.POST)  # Removed request.FILES since profile_pic is not used.
+        teacherForm = forms.TeacherForm(request.POST)
         
         if userForm.is_valid() and teacherForm.is_valid():
             user = userForm.save(commit=False)
@@ -72,7 +68,11 @@ def teacher_signup_view(request):
             my_teacher_group.user_set.add(user)
             
             return HttpResponseRedirect('teacherlogin')
+    else:
+        userForm = forms.TeacherUserForm()
+        teacherForm = forms.TeacherForm()
     
+    mydict = {'userForm': userForm, 'teacherForm': teacherForm}
     return render(request, 'teacher/teachersignup.html', context=mydict)
 
 
