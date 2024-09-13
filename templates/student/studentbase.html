@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en" dir="ltr">
 
 <head>
@@ -13,6 +14,9 @@
       margin: 0;
       padding: 0;
       font-family: 'Alexandria', "Gill Sans", sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
@@ -132,10 +136,10 @@
 
     .content {
       margin-left: 250px;
+      padding: 20px;
       background-position: center;
       background-size: cover;
-      height: 100vh;
-      transition: 0.5s;
+      flex: 1;
       font-family: 'Alexandria';
     }
 
@@ -145,6 +149,13 @@
 
     #check {
       display: none;
+    }
+
+    footer {
+      background-color: #5b98f1;
+      padding: 10px;
+      text-align: center;
+      color: white;
     }
   </style>
 
@@ -170,14 +181,7 @@
   <!--sidebar start-->
   <div class="sidebar">
     <center>
-      <!-- Check if student has a profile picture -->
-      {% if student.profile_pic %}
-      <!-- Display the uploaded profile picture -->
-      <img src="{{ student.profile_pic.url }}" class="profile_image" alt="Profile Picture">
-      {% else %}
-      <!-- Display a default placeholder if no picture is uploaded -->
       <img src="{% static 'image/student.png' %}" class="profile_image" alt="Default Profile Picture">
-      {% endif %}
       <h4>{{ request.user.first_name }}</h4>
       <h6 style="color: #ffffff;">(Student)</h6>
     </center>
@@ -193,11 +197,12 @@
     <br><br><br><br><br>
     {% block content %}
     {% endblock content %}
-
-   
   </div>
-  {% include "quiz/footer_dashboard.html" %}
   <!--content end-->
+
+  <footer>
+    {% include "quiz/footer_dashboard.html" %}
+  </footer>
 
 </body>
 
