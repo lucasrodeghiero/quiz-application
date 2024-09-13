@@ -2,97 +2,92 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block extra_head %}
+<style>
+  body {
+    font-family: 'Alexandria', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  .container-fluid {
+    padding: 2rem 1rem;
+  }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+  .card-title a {
+    color: #ffffff;
+    text-decoration: none;
+  }
 
-  <style>
-    body {
-      font-family: 'Alexandria', sans-serif;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+  .card-title a:hover {
+    text-decoration: underline;
+  }
 
-    .container-fluid {
-      padding: 2rem 1rem;
-    }
+  .card.bg-warning {
+    background-color: #e4a163 !important;
+    /* Custom primary color */
+  }
 
-    .card-title a {
-      color: #ffffff;
-      text-decoration: none;
-    }
+  .card.bg-warning:hover {
+    background-color: #bf8753 !important;
+    /* Custom primary color */
+  }
 
-    .card-title a:hover {
-      text-decoration: underline;
-    }
+  .card-text {
+    font-size: 2rem;
+  }
 
-    .card.bg-warning {
-      background-color: #e4a163 !important;
-      /* Custom primary color */
-    }
+  .f-left {
+    float: left;
+  }
 
-    .card.bg-warning:hover {
-      background-color: #bf8753 !important;
-      /* Custom primary color */
-    }
+  .text-right {
+    text-align: right;
+  }
 
+  @media (max-width: 768px) {
     .card-text {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
+  }
 
-    .f-left {
-      float: left;
+  @media (max-width: 576px) {
+    .card-text {
+      font-size: 1.25rem;
     }
+  }
 
-    .text-right {
-      text-align: right;
-    }
+  .custom-p {
+    margin-bottom: 40px !important;
+  }
 
-    @media (max-width: 768px) {
-      .card-text {
-        font-size: 1.5rem;
-      }
-    }
+  .custom-p-1 {
+    margin-top: 40px !important;
+  }
 
-    @media (max-width: 576px) {
-      .card-text {
-        font-size: 1.25rem;
-      }
-    }
-  </style>
-</head>
+</style>
+{% endblock extra_head %}
 
-<body>
-  <div class="container-fluid py-5">
-    <div class="row">
-      <div class="col-md-6 mb-4">
-        <a href="student-exam" class="card bg-warning text-white card-link">
-          <div class="card-body">
-            <h5 class="card-title">Total Quizzes Available</h5>
-            <h2 class="card-text text-right">
-              <i class="fas fa-book f-left"></i><span>{{ total_quiz }}</span>
-            </h2>
-          </div>
-        </a>
-      </div>
+<div class="container-fluid py-5">
+  <div class="row">
+    <h3>Hello, {{ user.first_name }} {{ user.last_name }}, welcome to MCQuiz!</h3>
+    <p>This is your personal dashboard. Click the card below to check the quizzes that have been made available by your teachers.</p>
+    <p class="custom-p">Happy MCQuizing!</p>
+
+    <div class="col-md-6 mb-4">
+      <a href="student-exam" class="card bg-warning text-white card-link">
+        <div class="card-body">
+          <h5 class="card-title">Total Quizzes Available</h5>
+          <h2 class="card-text text-right">
+            <i class="fas fa-book f-left"></i><span> {{ total_quiz }} </span>
+          </h2>
+        </div>
+      </a>
+      <p class="custom-p-1">To check your marks, click on the Marks tab on the left!</p>
     </div>
   </div>
-  <br><br><br><br><br>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+</div>
 
 {% endblock content %}
