@@ -37,7 +37,7 @@
         <td> {{quiz.question_number}}</td>
         <td> {{quiz.total_marks}}</td>
         <td>
-          <form action="{% url 'toggle-quiz-visibility' quiz.id %}" method="post">
+          <form action="{% url 'toggle-quiz-visibility-teacher' quiz.id %}" method="post">
             {% csrf_token %}
             <input type="checkbox" name="is_visible" {% if quiz.is_visible %}checked{% endif %} onchange="this.form.submit()">
         </form>

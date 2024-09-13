@@ -154,12 +154,12 @@ def teacher_view_exam_view(request):
 #     return HttpResponseRedirect(reverse('teacher-view-exam'))
 
 @login_required(login_url='teacherlogin')
-def toggle_quiz_visibility(request, pk):
-    quiz = get_object_or_404(models.Quiz, id=pk)
+@user_passes_test(is_teacher)
+def toggle_quiz_visibility_teacher(request, pk):
+    quiz = get_object_or_404(QMODEL.Quiz, id=pk)
     quiz.is_visible = not quiz.is_visible
     quiz.save()
     return HttpResponseRedirect(reverse('teacher-view-exam'))
-
 
   
 @login_required(login_url='teacherlogin')
