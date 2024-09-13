@@ -182,6 +182,7 @@
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           {% render_field userForm.username|attr:"class:form-control" required="required" %}
+          <div class="text-danger">{{ userForm.username.errors }}</div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
