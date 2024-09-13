@@ -37,8 +37,8 @@
   - Create an account without admin approval and login immediately after signup.
 - **Dashboard:**
   - View total numbers of quizzes/exams and questions.
-- **Take Exams:**
-  - Take any exam at any time with no limit on the number of attempts.
+- **Take Quiz:**
+  - Take any quiz at any time with no limit on the number of attempts.
   - View marks for each attempt of each exam.
 - **Question Format:**
   - Questions follow an MCQ pattern with 4 options and 1 correct answer.
