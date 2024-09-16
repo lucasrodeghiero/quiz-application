@@ -64,7 +64,7 @@ def is_student(user):
 def student_dashboard_view(request):
     dict={
     
-    'total_quiz':QMODEL.Quiz.objects.all().count(),
+    'total_quiz':QMODEL.Quiz.objects.filter(is_visible=True).count(),
     'total_question':QMODEL.Question.objects.all().count(),
     }
     return render(request,'student/student_dashboard.html',context=dict)
