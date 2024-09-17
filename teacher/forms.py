@@ -15,7 +15,12 @@ class TeacherUserForm(forms.ModelForm):
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("Username is already taken. Please choose another one.")
         return username
-
+    
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if len(password) < 8:
+            raise forms.ValidationError("Password must be at least 8 characters long.")
+        return password
 
 class TeacherForm(forms.ModelForm):
     class Meta:

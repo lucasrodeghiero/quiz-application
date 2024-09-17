@@ -189,6 +189,7 @@
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           {% render_field userForm.password|attr:"class:form-control" required="required" %}
+          <div class="text-danger">{{ userForm.password.errors }}</div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
