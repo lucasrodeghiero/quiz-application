@@ -210,6 +210,7 @@
           <div class="col-md-6 mb-3">
             <label for="email" class="form-label">Email</label>
             {% render_field teacherForm.email|attr:"class:form-control" required="required" %}
+            <div class="text-danger">{{ userForm.email.errors }}</div>
           </div>
         </div>
         <div class="text-center">
