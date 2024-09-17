@@ -224,7 +224,10 @@ def delete_student_view(request,pk):
     return HttpResponseRedirect('/teacher/teacher-view-student')
 
 @login_required(login_url='teacherlogin')
-def delete_question_view(request,pk):
-    question=QMODEL.Question.objects.all().filter(quiz_id=pk)
+def delete_question_view(request, pk):
+    
+    question = QMODEL.Question.objects.get(pk=pk)
     question.delete()
-    return render(request,'teacher/see_question.html',{'question':question})
+       
+    questions = QMODEL.Question.objects.filter(quiz_id=question.quiz_id)  # Get remaining questions for the quiz
+    return render(request, 'teacher/see_question.html', {'questions': questions})
