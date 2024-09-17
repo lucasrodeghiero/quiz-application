@@ -2,6 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
 
+{% block extra_head %}
 <style>
   .btn-primary {
     border: 2px solid #5b9bf1 !important;
@@ -16,6 +17,7 @@
         background: #4b82ca !important;
     }
 </style>
+{% endblock extra_head %}
 
 <h2 class="text-center text-dark">Add Quiz</h2>
 <form method="POST" autocomplete="off" style="margin: 100px auto; max-width: 600px; margin-top: 50px;">
@@ -42,5 +44,5 @@
 
   <button type="submit" class="btn btn-primary">Add Quiz</button>
 </form>
-<br><br><br>
+
 {% endblock %}

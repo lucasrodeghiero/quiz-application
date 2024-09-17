@@ -3,12 +3,7 @@
 {% block content %}
 
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Alexandria' rel='stylesheet'>
+{% block extra_head %}
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -156,10 +151,9 @@
       background-color: #76a97c !important; /* Custom primary color */
     }
   </style>
-</head>
-<br><br>
-<body>
-  <div class="container-fluid py-5">
+{% endblock extra_head %}
+
+<div class="container-fluid py-5">
     <div class="row">
       <div class="col-md-3 mb-4">
         <a href="teacher-view-student" class="card bg-primary text-white card-link">
@@ -204,17 +198,6 @@
       
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-</body>
-
-
-
-<br><br><br><br><br><br><br><br><br><br>
-
-<script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 
 
 {% endblock content %}
