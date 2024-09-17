@@ -1,11 +1,10 @@
 {% extends 'teacher/teacherbase.html' %}
 {% load static %}
 
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+{% block extra_head %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Marks</title>
@@ -16,8 +15,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     integrity="sha512-G8b7XH/pClS8DzlFMiXJ95IDPzbLyvs1P+1TtbVD+wfgIupKQn/qmdrgWgCZM5Szn8u8RV0r6lCAsHf1EFA8Rw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+{% endblock extra_head %}
 
+{% block content %}
 <body>
   <div class="container mt-5">
     <div class="card">

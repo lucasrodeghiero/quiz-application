@@ -81,18 +81,6 @@ def student_exam_view(request):
     quizzes = QMODEL.Quiz.objects.filter(is_visible=True)
     return render(request, 'student/student_exam.html', {'quizzes': quizzes})
 
-
-# @login_required(login_url='studentlogin')
-# @user_passes_test(is_student)
-# def take_exam_view(request,pk):
-#     quiz=QMODEL.Quiz.objects.get(id=pk)
-#     total_questions=QMODEL.Question.objects.all().filter(quiz=quiz).count()
-#     questions=QMODEL.Question.objects.all().filter(quiz=quiz)
-#     total_marks=0
-#     for q in questions:
-#         total_marks=total_marks + q.marks
-#     return render(request,'student/take_exam.html',{'quiz':quiz,'total_questions':total_questions,'total_marks':total_marks})
-
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def take_exam_view(request, pk):
@@ -109,17 +97,6 @@ def take_exam_view(request, pk):
         'total_questions': total_questions,
         'total_marks': total_marks
     })
-
-# @login_required(login_url='studentlogin')
-# @user_passes_test(is_student)
-# def start_exam_view(request,pk):
-#     quiz=QMODEL.Quiz.objects.get(id=pk)
-#     questions=QMODEL.Question.objects.all().filter(quiz=quiz)
-#     if request.method=='POST':
-#         pass
-#     response= render(request,'student/start_exam.html',{'quiz':quiz,'questions':questions})
-#     response.set_cookie('quiz_id',quiz.id)
-#     return response
 
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
@@ -189,6 +166,6 @@ def check_marks_view(request,pk):
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def student_marks_view(request):
-    quizzes=QMODEL.Quiz.objects.all()
+    quizzes=QMODEL.Quiz.objects.filter(is_visible=True)
     return render(request,'student/student_marks.html',{'quizzes':quizzes})
   
